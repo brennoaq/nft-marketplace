@@ -14,7 +14,7 @@ const Home = ({ marketplace, nft }) => {
       if (!item.sold) {
         // get uri url from nft contract
         const uri = await nft.tokenURI(item.tokenId)
-        // use uri to fetch the nft metadata stored on ipfs 
+        // use uri to fetch the nft metadata stored on ipfs
         const response = await fetch(uri)
         const metadata = await response.json()
         // get total price of item (item price + fee)
@@ -41,9 +41,7 @@ const Home = ({ marketplace, nft }) => {
 
   useEffect(() => {
     loadMarketplaceItems()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
   if (loading) return (
     <main style={{ padding: "1rem 0" }}>
       <h2>Loading...</h2>

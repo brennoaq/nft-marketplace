@@ -19,11 +19,10 @@ import { Spinner } from 'react-bootstrap'
 
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [account, setAccount] = useState(null);
-  const [nft, setNFT] = useState({});
-  const [marketplace, setMarketplace] = useState({});
-
+   const [loading, setLoading] = useState(true)
+  const [account, setAccount] = useState(null)
+  const [nft, setNFT] = useState({})
+  const [marketplace, setMarketplace] = useState({})
   // MetaMask Login/Connect
   const web3Handler = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -43,15 +42,13 @@ function App() {
     })
     loadContracts(signer)
   }
-
   const loadContracts = async (signer) => {
-   const marketplace = new ethers.Contract( MarketplaceAddress.address , MarketplaceAbi.abi , signer )
-   const nft = new ethers.Contract(NFTAddress.address, NFTAbi.abi, signer)
-
-   setMarketplace(marketplace)
-   setNFT(nft)
-
-   setLoading(false)
+    // Get deployed copies of contracts
+    const marketplace = new ethers.Contract(MarketplaceAddress.address, MarketplaceAbi.abi, signer)
+    setMarketplace(marketplace)
+    const nft = new ethers.Contract(NFTAddress.address, NFTAbi.abi, signer)
+    setNFT(nft)
+    setLoading(false)
   }
 
   return (
